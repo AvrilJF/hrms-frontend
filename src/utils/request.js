@@ -7,6 +7,15 @@ const request = axios.create({
     'Content-Type': 'application/json;charset=utf-8'
   }
 })
+//http://localhost:8080/api/admin/stats/employeeStats
+//http://localhost:8080/api/admin/stats/age
+// http://localhost:8080/api/admin/stats/status
+// http://localhost:8080/api/admin/stats/dept
+// http://localhost:8080/api/admin/stats/gender
+// http://localhost:8080/api/admin/stats/salary
+// http://localhost:8080/api/admin/stats/trend
+
+
 
 // 请求拦截器
 request.interceptors.request.use(

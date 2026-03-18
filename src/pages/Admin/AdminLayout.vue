@@ -6,9 +6,9 @@
     <div class="admin-main">
       <!-- 顶部导航：修复el-header默认样式 -->
       <el-header class="admin-header">
-        <div class="header-left">
+        <!-- <div class="header-left">
           <span class="system-title">企业人事管理系统</span>
-        </div>
+        </div> -->
         <div class="header-right">
           <el-icon class="theme-icon">
             <Moon />

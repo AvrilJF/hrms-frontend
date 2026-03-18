@@ -142,7 +142,7 @@ const initPieChart = () => {
 // 加载后端统计数据
 const loadStats = async () => {
   try {
-    const res = await request.get('/admin/api/dashboard/stats')
+    const res = await request.get('/admin/dashboard/stats')
     statsCards.value = [
       { label: '总员工数', value: res.totalUser, icon: User, color: '#409EFF' },
       { label: '在职员工', value: res.activeUser, icon: UserFilled, color: '#67C23A' },

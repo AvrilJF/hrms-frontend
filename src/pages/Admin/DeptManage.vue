@@ -97,7 +97,7 @@ const deptForm = reactive({ id: null, deptName: '', deptManager: null, parentId:
 
 const fetchDeptList = async () => {
   try {
-    const res = await request.get('/admin/api/dept/list', { 
+    const res = await request.get('/admin/dept/list', { 
       params: { ...queryParams, deptName: searchForm.deptName } 
     })
     deptList.value = res.records || []
@@ -110,7 +110,7 @@ const fetchDeptList = async () => {
 
 const fetchEmpOptions = async () => {
   try {
-    empOptions.value = await request.get('/admin/api/employee/options')
+    empOptions.value = await request.get('/admin/employee/options')
   } catch (e) {
     ElMessage.error('加载员工列表失败：' + e.message)
   }
@@ -118,7 +118,7 @@ const fetchEmpOptions = async () => {
 
 const fetchDeptOptions = async () => {
   try {
-    deptOptions.value = await request.get('/admin/api/dept/options')
+    deptOptions.value = await request.get('/admin/dept/options')
   } catch (e) {
     ElMessage.error('加载部门选项失败：' + e.message)
   }
@@ -160,7 +160,7 @@ const handleDelete = async (id) => {
       '提示', 
       { type: 'warning' }
     )
-    const res = await request.delete(`/admin/api/dept/delete/${id}`)
+    const res = await request.delete(`/admin/dept/delete/${id}`)
     if (res.code === 200) {
       ElMessage.success('删除成功')
       fetchDeptList()
@@ -176,7 +176,7 @@ const handleDelete = async (id) => {
 
 const confirmSave = async () => {
   try {
-    const res = await request.post('/admin/api/dept/save', deptForm)
+    const res = await request.post('/admin/dept/save', deptForm)
     if (res.code === 200) {
       ElMessage.success('操作成功')
       dialogVisible.value = false

@@ -137,7 +137,7 @@ const userForm = reactive({
 
 const fetchUserList = async () => {
   try {
-    const res = await request.get('/admin/api/user/list', { 
+    const res = await request.get('/admin/user/list', { 
       params: { ...queryParams, ...searchForm } 
     })
     userList.value = res.records || []
@@ -150,7 +150,7 @@ const fetchUserList = async () => {
 
 const fetchEmpOptions = async () => {
   try {
-    empOptions.value = await request.get('/admin/api/employee/options')
+    empOptions.value = await request.get('/admin/employee/options')
   } catch (e) {
     ElMessage.error('加载员工列表失败：' + e.message)
   }
@@ -190,7 +190,7 @@ const handleEdit = (row) => {
 
 const handleToggleStatus = async (row) => {
   try {
-    const res = await request.post(`/admin/api/user/toggle-status/${row.id}`)
+    const res = await request.post(`/admin/user/toggle-status/${row.id}`)
     if (res.code === 200) {
       ElMessage.success('状态更新成功')
       fetchUserList()
@@ -209,7 +209,7 @@ const handleDelete = async (id) => {
       '提示', 
       { type: 'warning' }
     )
-    const res = await request.delete(`/admin/api/user/delete/${id}`)
+    const res = await request.delete(`/admin/user/delete/${id}`)
     if (res.code === 200) {
       ElMessage.success('删除成功')
       fetchUserList()
@@ -225,7 +225,7 @@ const handleDelete = async (id) => {
 
 const confirmSave = async () => {
   try {
-    const res = await request.post('/admin/api/user/save', userForm)
+    const res = await request.post('/admin/user/save', userForm)
     if (res.code === 200) {
       ElMessage.success('操作成功')
       dialogVisible.value = false

@@ -1,15 +1,16 @@
+// 导入Vue Router的核心创建方法
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/Login.vue'
-// import Admin from '../pages/Admin.vue'
 
 import AdminLayout from '../pages/Admin/AdminLayout.vue'
-import AdminIndex from '../pages/Admin/Index.vue'
+import Dashboard from '../pages/Admin/AdminBoard.vue'
 import UserManage from '../pages/Admin/UserManage.vue'
 import RoleManage from '../pages/Admin/RoleManage.vue'
 import DeptManage from '../pages/Admin/DeptManage.vue'
+import StatsManage from '../pages/Admin/StatsManage.vue'
 
-import Hr from '../pages/Hr.vue'
-import Employee from '../pages/Employee.vue'
+import Hr from '../pages/Hr/HrBoard.vue'
+import Employee from '../pages/Employee/EmployeeBoard.vue'
 
 const routes = [
   {
@@ -27,10 +28,11 @@ const routes = [
     meta: { role: 'admin' },
     children: [
       { path: '', redirect: 'dashboard' }, // 根路径重定向到首页
-      { path: 'dashboard', component: AdminIndex, meta: { title: '后台首页' } }, // 首页
+      { path: 'dashboard', component: Dashboard, meta: { title: '后台首页' } }, // 首页
       { path: 'role', component: RoleManage, meta: { title: '角色管理' } },
       { path: 'dept', component: DeptManage, meta: { title: '部门管理', role: 'admin' } },
-      { path: 'user', component: UserManage, meta: { title: '用户管理', role: 'admin' } }
+      { path: 'user', component: UserManage, meta: { title: '用户管理', role: 'admin' } },
+      { path: 'stats', component: StatsManage, meta: { title: '统计管理', role: 'admin' } }
     ]
   },
   {
@@ -46,14 +48,14 @@ const routes = [
     meta: { role: 'employee' } // 普通员工页面
   }
 ]
-
+// 创建Vue Router实例，用于管理前端路由：页面跳转
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(),// 配置路由模式为HTML5 History模式（无#号的URL）
+  routes//提前定义好的路由配置：路由-组件
 })
 // 路由守卫：验证角色权限
 router.beforeEach((to, from, next) => {
-  const userRole = localStorage.getItem('userRole')
+  const userRole = localStorage.getItem('userRole')//从浏览器本地存储中获取（登录后存储的）
   // 登录页直接放行
   if (to.path === '/login') {
     next()

@@ -62,7 +62,7 @@ const roleForm = reactive({ id: null, roleName: '', roleCode: '', description: '
 
 // 获取角色列表
 const fetchRoleList = async () => {
-  const res = await request.get('/admin/api/role/list')
+  const res = await request.get('/admin/role/list')
   roleList.value = res.data
 }
 
@@ -81,14 +81,14 @@ const handleEdit = (row) => {
 // 删除
 const handleDelete = async (id) => {
   await ElMessageBox.confirm('此操作将永久删除该角色，是否继续？', '提示', { type: 'warning' })
-  await request.delete(`/admin/api/role/delete/${id}`)
+  await request.delete(`/admin/role/delete/${id}`)
   ElMessage.success('删除成功')
   fetchRoleList()
 }
 
 // 保存
 const confirmSave = async () => {
-  await request.post('/admin/api/role/save', roleForm)
+  await request.post('/admin/role/save', roleForm)
   ElMessage.success('操作成功')
   dialogVisible.value = false
   fetchRoleList()
